@@ -1,1 +1,5 @@
-To run this app you need to update database url .env file.
+
+- To run this app you need to update database url .env file and run below command:
+```
+composer install
+```
