@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mt-2">Articles</h1>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th class="p-4">Title</th>
+                <th class="p-4">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if articles %}
+                {% for article in articles %}
+                    <tr>
+                        <td class="p-4">{{article.getTitle()}}</td>
+                        <td class="p-4">
+                            <a href="/edit/{{article.getId()}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="/delete/{{article.getId()}}"><i class="fa-solid fa-trash"></i></a>
+                            <a href="/article/{{article.getId()}}"><i class="fa-solid fa-eye"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                No article yet.
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
