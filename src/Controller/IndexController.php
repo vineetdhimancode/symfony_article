@@ -2,8 +2,11 @@
 namespace App\Controller;
 
 use Carbon\Carbon;
+
 use App\Entity\Article;
+
 use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,13 +17,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class IndexController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", "index")
      * @Method({"GET"})
      */
     public function index(ManagerRegistry $doctrine, Request $request): Response
     {
         $articles = $doctrine->getManager()->getRepository(Article::class)->findAll();
         
+        $this->addFlash(
+            'errors',
+            'Your changes were saved!'
+        );
         return $this->render('/article/index.html.twig', ['articles' => $articles]);
     }
 

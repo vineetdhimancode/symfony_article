@@ -19,6 +19,22 @@
     <body>
         {% include '_partials/navbar.html.twig' %}
 
+        <div class="container">
+            {% for message in app.flashes('notice') %}
+                <div class="flash-notice">
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+            {% for error in app.flashes('errors') %}
+                <div class="flash-notice">
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
         {% block body %}
         
         {% endblock %}
